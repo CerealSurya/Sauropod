@@ -1,0 +1,6 @@
+# Logs
+logs
+*.log
+
+#other enviroments
+/sauro_test_env
