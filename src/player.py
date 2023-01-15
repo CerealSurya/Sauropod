@@ -4,7 +4,7 @@ import requests
 def player(songList, ytToken, finished, shuffle=False):
     queue = songList
     print("\n\n")
-    print(type(queue), queue)
+    #print(type(queue), queue)
     if type(queue) == str: #Getting it from url params
         queue = queue.split("c3R3@l")
         

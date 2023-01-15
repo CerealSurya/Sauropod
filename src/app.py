@@ -41,12 +41,14 @@ def main():
 
             finished = request.args.get("finished")
             playListItems = ""
-            playlistDetails = ""
+            playlistName = ""
+            playlistUrl = ""
             if finished == None:
                 playlist = getPlaylistItems(playlistId, info["access_token"])
                 if playlist != "badAccessToken":
                     playListItems = playlist["queue"]
-                    playlistDetails = playlist["details"]
+                    playlistName = playlist["details"]["name"]
+                    playlistUrl = playlist["details"]["img"]
                 else:
                     playListItems = "badAccessToken"
 
@@ -65,15 +67,12 @@ def main():
 
             else: #Acess token is good, do the things we want wit the playlist
                 queue = playListItems
-                playlistName = ""
-                playlistUrl = ""
                 if finished == "True":
                     finished = True
                     queue = request.cookies.get("queue")
-                    playlistDetails = request.cookies.get("playlistDetails")
                     playlistName = request.cookies.get("playlistName")
                     playlistUrl = request.cookies.get("playlistUrl")
-                    print(queue)
+                    print("Howdy", playlistName)
                 else:
                     finished = False
                 link = player(queue, ytToken, finished, shuffle=True) #Figure the shuffle out
@@ -86,8 +85,6 @@ def main():
                         respo.set_cookie("playlistId", "")
                         return respo
                 daQueue = link["queue"]
-                playlistName = playlistDetails["name"]
-                playlistUrl = playlistDetails["img"]
                 resp = make_response(render_template("index.html", videoId = link["id"], playlistName = playlistName, playlistUrl = playlistUrl, songList = daQueue, fullLink="https://www.youtube.com/embed/" + link["id"]))
                 resp.set_cookie("queue", daQueue)
                 resp.set_cookie("playlistId", playlistId)
