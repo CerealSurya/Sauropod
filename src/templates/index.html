@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title style="text-align:center">Sauropod Ad-Muter</title>
+  <meta name="author" content="">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+</head>
+
+<body id ='dummythicContainer'>
+  <form id="playlistForm" action="#" method="post">
+    <p>Playlist URL: </p>
+    <p><input type="text" name="playlisturl" placeholder="PlaylistURL" /></p>  
+    <p><input type="submit" name="submit_playlist" /></p>
+  </form>
+  <p style="color:rgba(38, 38, 38)" id = "songList">{{ songList }}</p>
+
+  <div id='general'>
+    <img class = 'music_note' id='musicnote' src = "{{url_for('static', filename='images/music.gif')}}"'>
+    <img class = 'music_note_flip' src = "{{url_for('static', filename='images/music.gif')}}">
+  </div>
+
+  <div id = 'vibinto'>
+    <h1>Currently Vibin to</h1>
+    <p style="color:rgba(89, 89, 89, 1)" id = "videoId">{{ videoId }}</p>
+    <center><h2 id ='currentsong'></h2></center>
+    <div id="player"></div>
+  </div>
+
+  <div id = 'albumdeets'>
+    <div id = 'albumcover'>
+      <h1 class = 'name' id ='name'>{{ playlistName }}</h1>
+      <img class = 'coverart' src = {{ playlistUrl }}>
+      <div class="dropdown">
+        <button onclick="songdropdown()" class="dropbtn">Show Songs</button>
+        <div id="myDropdown" class="dropdown-content">
+          <p2 id = 'tracks'></p2>
+          <!-- playlist tracks -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id ='menu' class='menu'>
+    <button id = '3lines' onclick = 'menufunc()'>____<br>____<br>____</button>
+    <div id='popout' class='popout'>
+      <a href="https://github.com/CerealSurya/Sauropod/blob/master/README.md">Setup & Instructions</a>
+      <p2 id ='settings' onclick="opensettings()">Super Secret stuff</p2>
+      <div id='account' class='popout'>
+        <h1 id='account-name'>GeneralYoda10</h1>
+        <img src="{{url_for('static', filename='images/monger.jpg')}}" id='account-pic'>
+      </div>
+    </div>
+  </div>
+
+
+  <div id='discomode'>
+    <img id='discoball' src="{{url_for('static', filename='images/disco.gif')}}">
+    <img id='catvibe' src="{{url_for('static', filename='images/catvibe.gif')}}">
+    <img id='catvibe2' src="{{url_for('static', filename='images/catvibe.gif')}}">
+    <img id='nyanboy' src="{{url_for('static', filename='images/nyan.gif')}}">
+  </div>
+
+  <div id='setting'>
+    <h1>Top Secret Stuff</h1>
+    <button id='exit' onclick = 'settingexit()'>❌</button>
+    <div id='settingcontent'>
+      <a href = 'https://github.com/CerealSurya/Sauropod/issues' id ='bugs'>Bugs & Suggestions</a>
+      <h2>Sauropod</h2>
+      <img id = 'logo' src="{{url_for('static', filename='images/logo.png')}}">
+      <a id='about' href = 'https://github.com/CerealSurya/Sauropod/blob/master/README.md#sauropod'>About Sauropod</a>
+      <div id = 'modes'>
+        <div id='git'>
+          <a href = 'https://github.com/CerealSurya/Sauropod'>View source code on Github</a>
+        <div id ='vibe'>
+          <h1>Vibe Mode</h1>
+          <button id='vibemode' onclick = 'vibemode()'>OFF</button>
+          <!-- Make sure that you define the vibemode function -->
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    var vibetext = document.getElementById('vibemode');
+    var vibestatus = localStorage.getItem('vibesetting');
+    document.getElementById('vibemode').textContent = vibestatus
+    if (vibetext.textContent === ''){
+      vibetext.textContent = 'OFF'
+    }
+  </script>
+
+  
+  <script>
+    var tag = document.createElement('script');
+    var songList = document.getElementById("songList").textContent;
+    songList = songList.split("c3R3@l");
+    var currentSong = document.getElementById("currentsong");
+    let constructedString = `🎵 ${songList[1]} 🎵`;
+    currentSong.innerHTML = constructedString;
+
+    const tracks = document.getElementById('tracks');
+    var trackText = "";
+    for(let i = 0; i < songList.length; i++)
+    {
+      trackText += songList[i] + "<br>";
+    }
+    tracks.innerHTML = trackText;
+
+    tag.src = "https://www.youtube.com/iframe_api";
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+    // create youtube player
+    var player;
+    var vidId = document.getElementById("videoId").textContent;
+    vidId = vidId.toString();
+    function onYouTubePlayerAPIReady() {
+      player = new YT.Player('player', {
+        width: '400',
+        height: '50',
+        videoId: vidId,
+        events: {
+          onReady: onPlayerReady,
+          onStateChange: onPlayerStateChange
+        }
+      });
+    }
+
+    // autoplay video
+    function onPlayerReady(event) {
+      event.target.playVideo();
+    }
+
+    // when video ends
+    function onPlayerStateChange(event) {        
+      if(event.data === 0) {
+        
+        const url = "http://localhost:6969/?finished=True"
+
+        window.location.replace(url);
+      }
+    }
+
+  </script>
+
+  <script>
+    function songdropdown() {
+      var songlist = document.getElementById("myDropdown");
+      if (songlist.style.display === "block") {
+        songlist.style.display = "none";
+      } else {
+        songlist.style.display = "block";
+      }
+}
+    function menufunc() {
+      var popout = document.getElementById("popout");
+      if (popout.style.display === "block") {
+        popout.style.display = "none";
+      } else {
+        popout.style.display = "block";
+      }
+    }
+    function opensettings(){
+      var setting = document.getElementById("setting");
+      var spotilogo = document.getElementById('spoti');
+      if (setting.style.display === "block") {
+        setting.style.display = "none";
+        spoti.style.display = 'block'
+        document.getElementById('albumdeets').style.filter = 'blur(0px)';
+        document.getElementById('vibinto').style.filter = 'blur(0px)';
+        document.getElementById('discomode').style.filter = 'blur(0px)';
+        document.getElementById('general').style.display = 'block';
+      } else {
+        setting.style.display = "block";
+        document.getElementById('albumdeets').style.filter = 'blur(5px)';
+        document.getElementById('vibinto').style.filter = 'blur(5px)';
+        document.getElementById('discomode').style.filter = 'blur(5px)';
+        document.getElementById('general').style.display = 'none';
+        spoti.style.display = 'none';
+      };
+    };
+    function settingexit(){
+      var popout = document.getElementById("popout");
+      var setting = document.getElementById("setting");
+      var spotilogo = document.getElementById('spoti');
+      var vibe = document.getElementById('vibemode');
+      document.getElementById('albumdeets').style.filter = 'blur(0px)';
+      document.getElementById('vibinto').style.filter = 'blur(0px)';
+      document.getElementById('discomode').style.filter = 'blur(0px)';
+      document.getElementById('general').style.display = 'block';
+      popout.style.display = 'none';
+      setting.style.display = 'none';
+      if (vibe.textContent === 'ON'){
+        spotilogo.style.display = 'none';
+      }
+      else{
+        spotilogo.style.display = 'block';
+      };
+    };
+    function vibemode(){
+      var buttontext = document.getElementById('vibemode');
+      var body = document.getElementById('dummythicContainer');
+      
+      if (buttontext.textContent === 'OFF'){
+        buttontext.textContent = 'ON';
+        document.getElementById('spoti').style.display = 'none';
+        document.getElementById('discomode').style.display = 'block';
+        localStorage.setItem('vibesetting', 'ON')
+      }
+      else{
+        buttontext.textContent = 'OFF';
+        document.getElementById('spoti').style.display = 'block';
+        document.getElementById('discomode').style.display = 'none';
+        localStorage.setItem('vibesetting', 'OFF')
+      };
+    };
+
+    var vibetext = document.getElementById('vibemode');
+    var body = document.getElementById('dummythicContainer');
+    var vibestatus = localStorage.getItem('vibesetting');
+
+    if (vibestatus === 'ON'){
+      document.getElementById('discomode').style.display = 'block';
+    }
+    else{
+      document.getElementById('discomode').style.display = 'none';
+    };
+  </script>  
+</body>
+
+</html>

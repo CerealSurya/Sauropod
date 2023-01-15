@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sauropod</title>
+  </head>
+  <body style = "background-color:dimgray">
+    <div id="player"></div>
+    <p style="color:beige" id = "videoId">{{ videoId }}</p>
+    <p style="color:beige" id = "songList">{{ songList }}</p>
+    <form style="color:beige" action="#" method="post">
+      <p>Playlist URL: </p>
+      <p><input type="text" name="playlisturl" placeholder="PlaylistURL" /></p>  
+      <p><input type="submit" name="submit_playlist" /></p>
+  </form>
+    <!-- <iframe width="560" height="315" src={{ fullLink }} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> -->
+    <script>
+        var tag = document.createElement('script');
+
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+        // create youtube player
+        var player;
+        var vidId = document.getElementById("videoId").textContent;
+        vidId = vidId.toString();
+        function onYouTubePlayerAPIReady() {
+          player = new YT.Player('player', {
+            width: '640',
+            height: '390',
+            videoId: vidId,
+            events: {
+              onReady: onPlayerReady,
+              onStateChange: onPlayerStateChange
+            }
+          });
+        }
+
+        // autoplay video
+        function onPlayerReady(event) {
+          event.target.playVideo();
+        }
+
+        // when video ends
+        function onPlayerStateChange(event) {        
+          if(event.data === 0) {
+            const url = "http://localhost:6969/?finished=True"
+            window.location.replace(url);
+          }
+        }
+
+    </script>
+  </body>
+</html>

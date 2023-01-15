@@ -4,3 +4,10 @@ logs
 
 #other enviroments
 /sauro_test_env
+/data
+
+#enviroment variables
+.env
+
+#pycachce
+*/__pycache__

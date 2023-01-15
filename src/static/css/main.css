@@ -1,0 +1,303 @@
+body {
+    background: rgba(38, 38, 38);
+    display: -webkit-flex; /* Safari */
+    display: flex;
+}
+    /* color: lightcyan; The color we use for text  or white*/
+.music_note {
+    width: 200px;
+    height: 200px;
+    background-repeat: no-repeat;
+    position: absolute;
+    right: 150px;
+    top: 50px;
+    transform: scaleX(-1);
+    
+}
+#playlistForm {
+    position: absolute;
+    top: 30%;
+}
+.music_note_flip {
+    transform: scaleX(-1);
+    width: 200px;
+    height: 200px;
+    background-repeat: no-repeat;
+    position: absolute;
+    left: 50px;
+    top: 50px;
+    
+}
+#vibinto {
+    background: rgba(89, 89, 89, 1);
+    border-radius: 25px;
+    color: white;
+    position: absolute;
+    left: 10px;
+    width: 520px;
+    height: 300px;
+    top: 490px;
+}
+#vibinto h1 {
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    font-size: 35px;
+}
+#vibinto h2 {
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    font-size: 28px;
+}
+#vibinto img.adblock {
+    position: absolute;
+    top: 150px;
+    left: 30px;
+    width: 270px;
+    height: 120px;
+}
+#vibinto p{
+    position: absolute;
+    top:100px;
+    left:325px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 1px;
+}
+#vibinto div.player {
+    position:absolute;
+    right:50%;
+    bottom:10px;
+}
+#albumdeets {
+    background: rgba(69, 69, 69, 1);
+    color: white;
+    position: absolute;
+    right: 150px;
+    width: 500px;
+    height: 300px;
+    top: 420px;
+}
+#albumdeets.albumcover h1 {
+    position: absolute;
+    right: 20px;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    font-size: 24px;
+    top: 20px;
+}
+#albumcover {
+    background: rgba(69, 69, 69, 1);
+    border-radius: 25px;
+    color: white;
+    position: absolute;
+    width: 500px;
+    height: 240px;
+}
+#albumcover .name {
+    position: absolute;
+    right: 20px;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    font-size: 24px;
+    top: 20px;
+    width:50%;
+}
+#albumcover .coverart {
+    position: absolute;
+    left: 20px;
+    top: 10px;
+    width:200px;
+    height:200px;
+}
+#albumdeets .dropdown .dropbtn{
+    position: absolute;
+    background-color:rgb(69, 69, 69);
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    top: 270px;
+    left: 0px;
+    width: 500px;
+    height:30px;
+}
+#albumdeets .dropdown #myDropdown{
+    position: absolute;
+    background-color:rgb(49, 49, 49);
+    border-radius: 10px;
+    top:300px;
+    width:500px;
+    height:500px;
+    font-size: 20px;
+    font-family: 'Courier New', Courier, monospace;
+    line-height: 2.2;
+    overflow-y: scroll;
+    display: none;
+}
+#albumdeets .dropdown #myDropdown p2{
+    position: absolute;
+    top: 30px;
+    left:20px;
+}
+#menu button{
+    background-color:transparent;
+    outline: rgba(38, 38, 38);
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 13px;
+    color: rgb(88, 82, 82);
+    position: absolute;
+    top: 11px;
+    right: 15px;
+}
+#menu #popout{
+    position: absolute;
+    background-color: rgb(53, 50, 50);
+    top: 50px;
+    right:15px;
+    width:300px;
+    height:300px;
+    display: none;
+    color: lightseagreen;
+}
+#menu .popout #account{
+    position: absolute;
+    width:300px;
+    height:100px;
+}
+#menu .popout #account h1{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 30px;
+    left:20px;
+}
+#menu .popout #account img{
+    position: absolute;
+    width:80px;
+    height:50px;
+    left:20px;
+}
+#menu #popout a{
+    position: absolute;
+    top:160px;
+    height:30px;
+    left:5px;
+    color: lightseagreen;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 30px;
+}
+#menu #popout p2{
+    position: absolute;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 30px;
+    bottom:20px;
+    height:50px;
+    left:5px;
+}
+#setting{
+    position: absolute;
+    border-radius: 25px;
+    top:30px;
+    width:700px;
+    height:800px;
+    left:550px;
+    background-color: rgb(107, 93, 93);
+    display: none;
+    color: rgba(255, 255, 255, 0.774);
+}
+#setting h1 {
+    position: absolute;
+    left: 10px;
+    font-family: Georgia, 'Times New Roman', Times,;
+    font-size: 70px;
+}
+#setting #settingcontent{
+    position: absolute;
+    top:140px;
+    height:900px;
+}
+#setting h2 {
+    position: absolute;
+    left: 10px;
+    bottom:270px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 60px;
+}
+#setting #bugs {
+    position: relative;
+    left: 25px;
+    top:270px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 40px;
+    color: rgba(255, 255, 255, 0.774);
+}
+#setting #logo{
+    position: absolute;
+    width:300px;
+    height:150px;
+    left: 350px;
+    bottom:300px;
+}
+#setting #about{
+    position: absolute;
+    left: 25px;
+    width:400px;
+    font-size: 40px;
+    top:175px;
+    color: rgba(255, 255, 255, 0.774);
+}
+#setting #exit{
+    position: absolute;
+    right: 0px;
+
+    font-size: 30px;
+}
+#setting #modes{
+    position: absolute;
+    top:200px;
+}
+#setting #git {
+    position: absolute;
+    left: 25px;
+    width:400px;
+}
+#setting #git a{
+    position: absolute;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size:40px;
+    color: rgba(255, 255, 255, 0.774);
+    bottom:70px;
+}
+#setting #vibe {
+    position: absolute;
+    left: 0px;
+    width:400px;
+    top:150px;
+}
+#setting #vibe h1{
+    position: absolute;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 40px;
+} 
+#setting #vibe button{
+    top:30px;
+    position: absolute;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 30px;
+    left: 300px;
+}
+#discomode{
+    position: absolute;
+    display: none;
+}
+#discoball{
+    position: absolute;
+    left: 650px;
+}
+#catvibe{
+    position: absolute;
+    top:500px;
+    left:1450px;
+}
+#catvibe2{
+    position: absolute;
+    top:400px;
+    left:200px;
+}
+#nyanboy{
+    position: absolute;
+    left:650px;
+    top:450px;
+}
