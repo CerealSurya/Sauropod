@@ -11,3 +11,6 @@ logs
 
 #pycachce
 */__pycache__
+
+#batch file
+sauropod.bat
